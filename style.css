@@ -1,0 +1,250 @@
+/* ==========================================================================
+   سروش و یاسی — دعوت‌نامهٔ مراسم
+   Soroush & Yasi — wedding invitation
+   ========================================================================== */
+
+:root {
+  --cream:      #F8F9FA;  /* زمینهٔ سفید مایل به شیری */
+  --blue:       #234D75;  /* آبی عمیق برای نوشته‌ها   */
+  --blue-light: #B7D5EA;  /* آبی روشن، تأکیدهای محدود */
+
+  /* تُن‌های ملایم‌تر از همان آبی عمیق، برای سلسله‌مراتب متن */
+  --blue-body:  rgba(35, 77, 117, 0.82);
+  --blue-quiet: rgba(35, 77, 117, 0.55);
+
+  --serif: "Cormorant Garamond", "Times New Roman", serif;
+  --sans:  "Vazirmatn", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* --------------------------------------------------------------- reset -- */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--cream);
+  color: var(--blue);
+  font-family: var(--sans);
+  overflow-x: hidden;           /* ضمانت نبودِ اسکرول افقی */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img { max-width: 100%; }
+
+/* ------------------------------------------------------------- چیدمان -- */
+/* موبایل (پیش‌فرض): نام‌ها › عکس › متن دعوت › اطلاعات مراسم             */
+
+.invitation {
+  max-width: 1080px;
+  margin-inline: auto;
+  padding: clamp(3rem, 9vw, 6rem) clamp(1.5rem, 5vw, 3rem) clamp(3.5rem, 9vw, 6rem);
+  text-align: center;
+}
+
+/* --------------------------------------------------------------- نام‌ها -- */
+
+.names {
+  margin: 0;
+}
+
+.names__en {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(2.45rem, 9vw, 4.35rem);
+  line-height: 1.12;
+  letter-spacing: 0.055em;      /* فقط روی حروف لاتین */
+  color: var(--blue);
+}
+
+.names__amp {
+  font-style: italic;
+  color: var(--blue-quiet);
+  padding-inline: 0.06em;
+}
+
+.names__rule {
+  display: block;
+  width: 46px;
+  height: 1px;
+  margin: clamp(1.5rem, 4vw, 2.25rem) auto 0;
+  background-color: var(--blue-light);
+}
+
+/* ----------------------------------------------------------------- عکس -- */
+
+.portrait {
+  margin: clamp(2.75rem, 8vw, 4rem) auto 0;
+  max-width: 420px;
+}
+
+.portrait img {
+  display: block;
+  width: 100%;
+  height: auto;                 /* نسبت طبیعی عکس، بدون برش */
+}
+
+/* ----------------------------------------------------------- متن دعوت -- */
+
+.message {
+  margin-top: clamp(2.75rem, 8vw, 4rem);
+}
+
+.message p {
+  margin: 0 0 1.45rem;
+  margin-inline: auto;
+  max-width: 34rem;
+  font-weight: 300;
+  font-size: clamp(0.98rem, 2.7vw, 1.08rem);
+  line-height: 2.15;
+  color: var(--blue-body);
+}
+
+.message p:last-child { margin-bottom: 0; }
+
+.message .message__opening {
+  margin-bottom: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 500;
+  font-size: clamp(1rem, 2.9vw, 1.12rem);
+  color: var(--blue);
+}
+
+.message .message__signature {
+  margin-top: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 500;
+  font-size: clamp(1.02rem, 3vw, 1.14rem);
+  color: var(--blue);
+}
+
+/* --------------------------------------------------- اطلاعات مراسم -- */
+
+.details {
+  margin-top: clamp(2.5rem, 7vw, 3.5rem);
+}
+
+.details__rule {
+  display: block;
+  width: 64px;
+  height: 1px;
+  margin: 0 auto clamp(2.25rem, 6vw, 3rem);
+  background-color: var(--blue-light);
+}
+
+.details p {
+  margin: 0 0 0.6rem;
+  font-weight: 300;
+  font-size: clamp(0.95rem, 2.65vw, 1.04rem);
+  line-height: 1.95;
+  color: var(--blue-body);
+}
+
+.details .details__date {
+  font-weight: 500;
+  font-size: clamp(1.02rem, 3vw, 1.14rem);
+  color: var(--blue);
+}
+
+/* ------------------------------------------------------ دکمهٔ مسیریابی -- */
+
+.details__route {
+  display: inline-block;
+  margin-top: clamp(2rem, 5.5vw, 2.75rem);
+  padding: 0.95em 2.1em;
+  border: 1px solid var(--blue-light);
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: clamp(0.9rem, 2.5vw, 0.97rem);
+  line-height: 1;
+  color: var(--blue);
+  text-decoration: none;
+  background-color: transparent;
+  transition: background-color 0.35s ease,
+              border-color 0.35s ease,
+              color 0.35s ease;
+}
+
+.details__route:hover {
+  background-color: var(--blue);
+  border-color: var(--blue);
+  color: var(--cream);
+}
+
+.details__route:focus-visible {
+  outline: 1px solid var(--blue);
+  outline-offset: 4px;
+}
+
+/* ====================================================== دسکتاپ ≥ ۹۰۰px == */
+/* عکس عمودی سمت راست، متن سمت چپ                                        */
+
+@media (min-width: 900px) {
+
+  .invitation {
+    display: grid;
+    grid-template-columns: minmax(300px, 400px) minmax(0, 1fr);
+    /* در چیدمان راست‌به‌چپ، ستون نخست سمت راست قرار می‌گیرد */
+    grid-template-areas:
+      "photo ."
+      "photo names"
+      "photo message"
+      "photo details"
+      "photo .";
+    /* ردیف‌های خالیِ بالا و پایین، متن و عکس را قرینه وسط می‌چینند.
+       min-height به‌جای height، تا محتوای بلندتر آزادانه اسکرول شود. */
+    grid-template-rows: 1fr auto auto auto 1fr;
+    min-height: 100vh;
+    padding-block: 4rem;
+    column-gap: clamp(3rem, 6.5vw, 6rem);
+    align-items: start;
+  }
+
+  .portrait {
+    grid-area: photo;
+    margin: 0;
+    max-width: none;
+    align-self: center;
+  }
+  .names    { grid-area: names;   }
+  .message  { grid-area: message; }
+  .details  { grid-area: details; }
+
+  /* ستون متن از کل صفحه باریک‌تر است، پس نام‌ها اندازهٔ محافظه‌کارانه‌تری
+     می‌گیرند تا همیشه در یک سطر بمانند. */
+  .names__en {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    text-wrap: balance;
+  }
+
+  .names    { margin-top: 0; }
+  .message  { margin-top: clamp(2rem, 3.2vw, 2.75rem); }
+  .details  { margin-top: clamp(2rem, 3.2vw, 2.75rem); }
+}
+
+/* ------------------------------------------------- ورودِ آرامِ صفحه -- */
+
+@media (prefers-reduced-motion: no-preference) {
+
+  .names,
+  .portrait,
+  .message,
+  .details {
+    animation: rise 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  .names    { animation-delay: 0.05s; }
+  .portrait { animation-delay: 0.17s; }
+  .message  { animation-delay: 0.29s; }
+  .details  { animation-delay: 0.41s; }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: none; }
+  }
+}
