@@ -53,25 +53,49 @@ img { max-width: 100%; }
   border: 1px solid var(--blue-light);
 }
 
-/* هاشورِ گوشه: سه خط مورب که مثلث کوچکی در گوشه می‌سازند */
-.sheet__corner {
+/* شاخه‌های برگ: دو خوشه در گوشه‌های روبه‌روی هم، پشتِ متن */
+
+.sprig-defs {            /* فقط نگه‌دارندهٔ تعریف است، جایی اشغال نمی‌کند */
   position: absolute;
-  width: clamp(30px, 6vw, 52px);
-  height: clamp(30px, 6vw, 52px);
-  color: var(--blue-light);
-  pointer-events: none;
-  overflow: visible;
+  width: 0;
+  height: 0;
+  overflow: hidden;
 }
 
-.sheet__corner--tl { top: 0;    left: 0;                              }
-.sheet__corner--tr { top: 0;    right: 0;  transform: rotate(90deg);  }
-.sheet__corner--br { bottom: 0; right: 0;  transform: rotate(180deg); }
-.sheet__corner--bl { bottom: 0; left: 0;   transform: rotate(270deg); }
+.sprig__stem {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-opacity: 0.7;
+}
+
+.sprig__leaves ellipse { fill: currentColor; }
+
+.botanical {
+  position: absolute;
+  width: clamp(165px, 34vw, 300px);
+  height: clamp(165px, 34vw, 300px);
+  overflow: visible;            /* تا نوک شاخه‌ها از کادر بیرون بزند */
+  pointer-events: none;
+  z-index: 0;
+}
+
+.botanical--tl { top: -6px;    left: -6px;                          }
+.botanical--br { bottom: -6px; right: -6px; transform: rotate(180deg); }
+
+/* هر شاخه تُن خودش را دارد تا خوشه عمق بگیرد */
+.botanical__sprig--back  { color: rgba(183, 213, 234, 0.95); }
+.botanical__sprig--mid   { color: rgba( 35,  77, 117, 0.17); }
+.botanical__sprig--front { color: rgba(183, 213, 234, 0.68); }
+.botanical__sprig--fill  { color: rgba( 35,  77, 117, 0.10); }
 
 /* ------------------------------------------------------------- چیدمان -- */
 /* موبایل (پیش‌فرض): نام‌ها › عکس › متن دعوت › اطلاعات مراسم             */
 
 .invitation {
+  position: relative;
+  z-index: 1;                   /* متن همیشه روی برگ‌ها */
   flex: 1 1 auto;               /* تا ارتفاع کادر را پر کند */
   width: 100%;
   max-width: 1080px;
