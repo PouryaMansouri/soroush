@@ -217,20 +217,6 @@ img { max-width: 100%; }
   box-shadow: 0 0 0 1px rgba(183, 213, 234, 0.9);
 }
 
-/* شاخه‌ای که از گوشهٔ پایین‌راستِ عکس بیرون می‌زند */
-.photo-spray {
-  position: absolute;
-  /* در طرح مرجع این شاخه فقط در نسخهٔ دسکتاپ هست */
-  display: none;
-  /* روی خودِ عکس می‌افتد: بخش بیشترش داخل کادر عکس، نوکش بیرون */
-  bottom: -14px;
-  right: -10px;
-  width: clamp(46px, 5.4vh, 74px);
-  height: auto;
-  pointer-events: none;
-  z-index: 3;                   /* همیشه بالاتر از عکس */
-}
-
 /* ----------------------------------------------------------- متن دعوت -- */
 
 .message {
@@ -340,8 +326,6 @@ img { max-width: 100%; }
     column-gap: clamp(2rem, 5vw, 5rem);
     align-items: start;
   }
-
-  .photo-spray { display: block; }
 
   .portrait {
     grid-area: photo;
