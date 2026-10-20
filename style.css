@@ -220,11 +220,12 @@ img { max-width: 100%; }
 /* شاخه‌ای که از گوشهٔ پایین‌راستِ عکس بیرون می‌زند */
 .photo-spray {
   position: absolute;
-  bottom: clamp(-26px, -4vw, -14px);
-  right: clamp(-28px, -4.4vw, -16px);
-  width: clamp(78px, 16vw, 138px);
+  /* در طرح مرجع این شاخه فقط در نسخهٔ دسکتاپ هست */
+  display: none;
+  bottom: -18px;
+  right: -20px;
+  width: clamp(38px, 4.4vh, 60px);
   height: auto;
-  transform: scaleX(-1);
   pointer-events: none;
   z-index: 2;
 }
@@ -338,6 +339,8 @@ img { max-width: 100%; }
     column-gap: clamp(2rem, 5vw, 5rem);
     align-items: start;
   }
+
+  .photo-spray { display: block; }
 
   .portrait {
     grid-area: photo;
