@@ -53,6 +53,33 @@ img { max-width: 100%; }
   border: 1px solid var(--blue-light);
 }
 
+/* خط دوم، کمی تورفته: قاب را دولاین و «چاپی» می‌کند */
+.sheet::before {
+  content: "";
+  position: absolute;
+  inset: clamp(6px, 1.1vw, 10px);
+  border: 1px solid rgba(35, 77, 117, 0.22);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* نگینِ گوشه: مربعِ چرخیده که روی تقاطع خط دوم می‌نشیند */
+.gem {
+  position: absolute;
+  width: clamp(5px, 1.1vw, 7px);
+  height: clamp(5px, 1.1vw, 7px);
+  background-color: var(--blue);
+  opacity: 0.55;
+  transform: rotate(45deg);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.gem--tl { top: clamp(3px, 0.75vw, 6.5px);    left: clamp(3px, 0.75vw, 6.5px);  }
+.gem--tr { top: clamp(3px, 0.75vw, 6.5px);    right: clamp(3px, 0.75vw, 6.5px); }
+.gem--br { bottom: clamp(3px, 0.75vw, 6.5px); right: clamp(3px, 0.75vw, 6.5px); }
+.gem--bl { bottom: clamp(3px, 0.75vw, 6.5px); left: clamp(3px, 0.75vw, 6.5px);  }
+
 /* شاخه‌های برگ: دو خوشه در گوشه‌های روبه‌روی هم، پشتِ متن */
 
 .sprig-defs {            /* فقط نگه‌دارندهٔ تعریف است، جایی اشغال نمی‌کند */
@@ -136,15 +163,25 @@ img { max-width: 100%; }
 
 /* ----------------------------------------------------------------- عکس -- */
 
+/* عکس داخل یک پاسپارتوی سفید می‌نشیند، مثل یک قاب چاپی */
 .portrait {
   margin: clamp(2.75rem, 8vw, 4rem) auto 0;
   max-width: 420px;
+  padding: clamp(8px, 2.2vw, 13px);
+  background-color: #FFFFFF;
+  border-radius: clamp(7px, 1.6vw, 12px);
+  box-shadow:
+    0 1px 2px rgba(35, 77, 117, 0.07),
+    0 10px 28px rgba(35, 77, 117, 0.08);
 }
 
 .portrait img {
   display: block;
   width: 100%;
   height: auto;                 /* نسبت طبیعی عکس، بدون برش */
+  border-radius: clamp(3px, 0.9vw, 6px);
+  /* خط موی داخلی؛ با box-shadow کشیده می‌شود تا نسبت عکس تغییر نکند */
+  box-shadow: 0 0 0 1px rgba(183, 213, 234, 0.9);
 }
 
 /* ----------------------------------------------------------- متن دعوت -- */
