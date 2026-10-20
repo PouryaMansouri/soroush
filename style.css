@@ -32,7 +32,20 @@ body {
   /* فاصلهٔ بیرونِ کادر، مثل حاشیهٔ سفید یک کارت چاپی */
   padding: clamp(10px, 2.4vw, 26px);
   display: flex;
+
+  /* پس‌زمینهٔ آبرنگی: لکه‌های ابریِ آبی روی زمینهٔ شیری.
+     لکه‌ها با feTurbulence ساخته می‌شوند، پس فایل تصویری لازم نیست. */
   background-color: var(--cream);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='700' height='700'%3E%3Cfilter id='c' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.013' numOctaves='4' seed='9'/%3E%3CfeColorMatrix values='0 0 0 0 0.43 0 0 0 0 0.62 0 0 0 0 0.80 0.60 0 0 0 -0.28'/%3E%3C/filter%3E%3Crect width='700' height='700' filter='url(%23c)'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse 72% 52% at   0%   0%, rgba(130, 174, 212, 0.34), rgba(130, 174, 212, 0) 72%),
+    radial-gradient(ellipse 64% 46% at 100%   0%, rgba(130, 174, 212, 0.26), rgba(130, 174, 212, 0) 72%),
+    radial-gradient(ellipse 72% 52% at 100% 100%, rgba(130, 174, 212, 0.32), rgba(130, 174, 212, 0) 72%),
+    radial-gradient(ellipse 64% 46% at   0% 100%, rgba(130, 174, 212, 0.24), rgba(130, 174, 212, 0) 72%);
+  /* کاشی بزرگ‌تر از ۷۰۰ گرفته می‌شود تا تکرارِ نقش در صفحهٔ بلند به چشم نیاید.
+     از background-attachment: fixed پرهیز شده، چون روی سافاری iOS پایدار نیست. */
+  background-size: 1100px 1100px, auto, auto, auto, auto;
+  background-repeat: repeat, no-repeat, no-repeat, no-repeat, no-repeat;
   color: var(--blue);
   font-family: var(--sans);
   overflow-x: hidden;           /* ضمانت نبودِ اسکرول افقی */
@@ -92,12 +105,12 @@ img { max-width: 100%; }
 .sprig__stem {
   fill: none;
   stroke: currentColor;
-  stroke-width: 1.4;
+  stroke-width: 1.2;
   stroke-linecap: round;
-  stroke-opacity: 0.7;
+  stroke-opacity: 0.85;
 }
 
-.sprig__leaves ellipse { fill: currentColor; }
+.leaf__blade { fill: currentColor; }
 
 .botanical {
   position: absolute;
@@ -111,11 +124,19 @@ img { max-width: 100%; }
 .botanical--tl { top: -6px;    left: -6px;                          }
 .botanical--br { bottom: -6px; right: -6px; transform: rotate(180deg); }
 
-/* هر شاخه تُن خودش را دارد تا خوشه عمق بگیرد */
-.botanical__sprig--back  { color: rgba(183, 213, 234, 0.95); }
-.botanical__sprig--mid   { color: rgba( 35,  77, 117, 0.17); }
-.botanical__sprig--front { color: rgba(183, 213, 234, 0.68); }
-.botanical__sprig--fill  { color: rgba( 35,  77, 117, 0.10); }
+/* برگ‌ها سبزِ مریم‌گلیِ ملایم‌اند، با چند تُن تا خوشه عمق بگیرد */
+.botanical__sprig--back  { color: #A9BCA4; }
+.botanical__sprig--mid   { color: #8EA68A; }
+.botanical__sprig--front { color: #C0CEBA; }
+.botanical__sprig--fill  { color: rgba(142, 166, 138, 0.52); }
+
+/* گل فراموشم‌مکن: گلبرگ از رنگ ارثیِ هر گل، مرکز ثابت */
+.fmn__petal { fill: currentColor; }
+.fmn__eye   { fill: #EBD398; }
+
+.fmn--a { color: #6FA3D6; }
+.fmn--b { color: #8CB8E0; }
+.fmn--c { color: #AECBE6; }
 
 /* ------------------------------------------------------------- چیدمان -- */
 /* موبایل (پیش‌فرض): نام‌ها › عکس › متن دعوت › اطلاعات مراسم             */
@@ -153,18 +174,65 @@ img { max-width: 100%; }
   padding-inline: 0.06em;
 }
 
-.names__rule {
-  display: block;
-  width: 46px;
+/* ------------------------------------------------ جداکننده‌ها -- */
+/* خط نازک، با یک گل یا لوزی کوچک در میانه                        */
+
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(7px, 1.8vw, 13px);
+  width: min(100%, 290px);
+  margin-inline: auto;
+}
+
+.names .divider { margin-top: clamp(1.1rem, 3vw, 1.6rem); }
+
+.divider__line {
+  flex: 1 1 auto;
   height: 1px;
-  margin: clamp(1.5rem, 4vw, 2.25rem) auto 0;
   background-color: var(--blue-light);
 }
+
+.divider__motif {
+  flex: none;
+  width: clamp(21px, 5vw, 29px);
+  height: auto;
+  overflow: visible;
+}
+
+.divider__leaf { color: #9BB097; }
+
+.divider--gem {
+  width: min(100%, 164px);
+  margin-block: clamp(0.9rem, 2.4vw, 1.3rem);
+}
+
+.divider__diamond {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  background-color: var(--blue);
+  opacity: 0.45;
+  transform: rotate(45deg);
+}
+
+/* شاخهٔ کوچک بالای سطر «به نام عشق» */
+.accent {
+  display: block;
+  width: clamp(46px, 11vw, 64px);
+  height: auto;
+  margin: 0 auto clamp(0.45rem, 1.4vw, 0.7rem);
+  overflow: visible;
+}
+
+.accent__leaf { color: #9BB097; }
 
 /* ----------------------------------------------------------------- عکس -- */
 
 /* عکس داخل یک پاسپارتوی سفید می‌نشیند، مثل یک قاب چاپی */
 .portrait {
+  position: relative;
   margin: clamp(2.75rem, 8vw, 4rem) auto 0;
   max-width: 420px;
   padding: clamp(8px, 2.2vw, 13px);
@@ -182,6 +250,18 @@ img { max-width: 100%; }
   border-radius: clamp(3px, 0.9vw, 6px);
   /* خط موی داخلی؛ با box-shadow کشیده می‌شود تا نسبت عکس تغییر نکند */
   box-shadow: 0 0 0 1px rgba(183, 213, 234, 0.9);
+}
+
+/* شاخه‌ای که از گوشهٔ پایین‌راستِ عکس بیرون می‌زند */
+.photo-spray {
+  position: absolute;
+  bottom: clamp(-20px, -3.2vw, -11px);
+  right: clamp(-22px, -3.6vw, -12px);
+  width: clamp(88px, 22vw, 162px);
+  height: auto;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 2;
 }
 
 /* ----------------------------------------------------------- متن دعوت -- */
@@ -222,13 +302,7 @@ img { max-width: 100%; }
   margin-top: clamp(2.5rem, 7vw, 3.5rem);
 }
 
-.details__rule {
-  display: block;
-  width: 64px;
-  height: 1px;
-  margin: 0 auto clamp(2.25rem, 6vw, 3rem);
-  background-color: var(--blue-light);
-}
+.details .divider { margin-bottom: clamp(1.9rem, 5vw, 2.6rem); }
 
 .details p {
   margin: 0 0 0.6rem;
