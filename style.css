@@ -222,12 +222,13 @@ img { max-width: 100%; }
   position: absolute;
   /* در طرح مرجع این شاخه فقط در نسخهٔ دسکتاپ هست */
   display: none;
-  bottom: -18px;
-  right: -20px;
-  width: clamp(38px, 4.4vh, 60px);
+  /* روی خودِ عکس می‌افتد: بخش بیشترش داخل کادر عکس، نوکش بیرون */
+  bottom: -14px;
+  right: -10px;
+  width: clamp(46px, 5.4vh, 74px);
   height: auto;
   pointer-events: none;
-  z-index: 2;
+  z-index: 3;                   /* همیشه بالاتر از عکس */
 }
 
 /* ----------------------------------------------------------- متن دعوت -- */
@@ -334,7 +335,7 @@ img { max-width: 100%; }
       "photo details"
       "photo .";
     grid-template-rows: 1fr auto auto auto 1fr;
-    padding-block: clamp(0.55rem, 2.1vh, 2.75rem);
+    padding-block: clamp(0.4rem, 1.8vh, 2.75rem);
     padding-inline: clamp(1.5rem, 4vw, 3rem);
     column-gap: clamp(2rem, 5vw, 5rem);
     align-items: start;
