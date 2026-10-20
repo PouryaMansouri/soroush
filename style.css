@@ -102,41 +102,21 @@ img { max-width: 100%; }
   overflow: hidden;
 }
 
-.sprig__stem {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.2;
-  stroke-linecap: round;
-  stroke-opacity: 0.85;
-}
-
-.leaf__blade { fill: currentColor; }
+/* رنگ گل، غنچه و برگ داخل خودِ تعریف SVG است (با سایه‌پردازی)،
+   پس اینجا فقط اندازه و جای خوشه‌ها تنظیم می‌شود. */
 
 .botanical {
   position: absolute;
-  width: clamp(165px, 34vw, 300px);
-  height: clamp(165px, 34vw, 300px);
+  width: clamp(116px, 25vw, 208px);
+  height: clamp(116px, 25vw, 208px);
   overflow: visible;            /* تا نوک شاخه‌ها از کادر بیرون بزند */
   pointer-events: none;
   z-index: 0;
 }
 
-.botanical--tl { top: -6px;    left: -6px;                          }
-.botanical--br { bottom: -6px; right: -6px; transform: rotate(180deg); }
+.botanical--tl { top: -2px;    left: -2px;                          }
+.botanical--br { bottom: -2px; right: -2px; transform: rotate(180deg); }
 
-/* برگ‌ها سبزِ مریم‌گلیِ ملایم‌اند، با چند تُن تا خوشه عمق بگیرد */
-.botanical__sprig--back  { color: #A9BCA4; }
-.botanical__sprig--mid   { color: #8EA68A; }
-.botanical__sprig--front { color: #C0CEBA; }
-.botanical__sprig--fill  { color: rgba(142, 166, 138, 0.52); }
-
-/* گل فراموشم‌مکن: گلبرگ از رنگ ارثیِ هر گل، مرکز ثابت */
-.fmn__petal { fill: currentColor; }
-.fmn__eye   { fill: #EBD398; }
-
-.fmn--a { color: #6FA3D6; }
-.fmn--b { color: #8CB8E0; }
-.fmn--c { color: #AECBE6; }
 
 /* ------------------------------------------------------------- چیدمان -- */
 /* موبایل (پیش‌فرض): نام‌ها › عکس › متن دعوت › اطلاعات مراسم             */
