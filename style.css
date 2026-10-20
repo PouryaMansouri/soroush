@@ -333,9 +333,13 @@ img { max-width: 100%; }
 
 @media (min-width: 900px) {
 
+  /* در دسکتاپ کل دعوت‌نامه باید در یک صفحه جا شود، پس اندازه‌ها
+     به ارتفاع ویوپورت (vh) گره می‌خورند. هیچ‌جا بریده نمی‌شود:
+     اگر ویوپورت خیلی کوتاه باشد، کف clamp‌ها اجازهٔ اسکرول می‌دهد. */
+
   .invitation {
     display: grid;
-    grid-template-columns: minmax(300px, 400px) minmax(0, 1fr);
+    grid-template-columns: minmax(230px, min(400px, 43vh)) minmax(0, 1fr);
     /* در چیدمان راست‌به‌چپ، ستون نخست سمت راست قرار می‌گیرد */
     grid-template-areas:
       "photo ."
@@ -343,11 +347,10 @@ img { max-width: 100%; }
       "photo message"
       "photo details"
       "photo .";
-    /* ردیف‌های خالیِ بالا و پایین، متن و عکس را قرینه وسط می‌چینند.
-       ارتفاع را کادر تعیین می‌کند، پس محتوای بلندتر آزادانه اسکرول می‌شود. */
     grid-template-rows: 1fr auto auto auto 1fr;
-    padding-block: 4rem;
-    column-gap: clamp(3rem, 6.5vw, 6rem);
+    padding-block: clamp(0.7rem, 2.5vh, 2.75rem);
+    padding-inline: clamp(1.5rem, 4vw, 3rem);
+    column-gap: clamp(2rem, 5vw, 5rem);
     align-items: start;
   }
 
@@ -356,21 +359,49 @@ img { max-width: 100%; }
     margin: 0;
     max-width: none;
     align-self: center;
+    padding: clamp(6px, 1.1vh, 12px);
   }
-  .names    { grid-area: names;   }
-  .message  { grid-area: message; }
-  .details  { grid-area: details; }
 
-  /* ستون متن از کل صفحه باریک‌تر است، پس نام‌ها اندازهٔ محافظه‌کارانه‌تری
+  .names    { grid-area: names;   margin-top: 0; }
+  .message  { grid-area: message; margin-top: clamp(0.9rem, 2.4vh, 2rem); }
+  .details  { grid-area: details; margin-top: clamp(0.9rem, 2.4vh, 2rem); }
+
+  /* ستون متن باریک‌تر از کل صفحه است، پس نام‌ها اندازهٔ محافظه‌کارانه‌تری
      می‌گیرند تا همیشه در یک سطر بمانند. */
   .names__en {
-    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-size: clamp(1.9rem, min(5vw, 6.4vh), 3.4rem);
     text-wrap: balance;
   }
 
-  .names    { margin-top: 0; }
-  .message  { margin-top: clamp(2rem, 3.2vw, 2.75rem); }
-  .details  { margin-top: clamp(2rem, 3.2vw, 2.75rem); }
+  .names .divider { margin-top: clamp(0.5rem, 1.6vh, 1.4rem); }
+
+  .accent {
+    width: clamp(36px, 5.4vh, 58px);
+    margin-bottom: clamp(0.25rem, 0.8vh, 0.6rem);
+  }
+
+  .message p {
+    font-size: clamp(0.86rem, 1.7vh, 1.05rem);
+    line-height: 1.95;
+    margin-bottom: clamp(0.5rem, 1.5vh, 1.3rem);
+  }
+
+  .message .message__opening  { margin-bottom: clamp(0.6rem, 1.8vh, 1.5rem); }
+  .message .message__signature { margin-top: clamp(0.7rem, 2vh, 1.7rem); }
+
+  .divider--gem { margin-block: clamp(0.5rem, 1.5vh, 1.2rem); }
+  .details .divider { margin-bottom: clamp(0.8rem, 2.4vh, 2rem); }
+
+  .details p {
+    font-size: clamp(0.85rem, 1.65vh, 1.02rem);
+    line-height: 1.8;
+    margin-bottom: clamp(0.25rem, 0.7vh, 0.6rem);
+  }
+
+  .details__route {
+    margin-top: clamp(0.55rem, 1.9vh, 2rem);
+    padding: clamp(0.55em, 1.2vh, 0.95em) 2.1em;
+  }
 }
 
 /* ------------------------------------------------- ورودِ آرامِ صفحه -- */
